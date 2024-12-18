@@ -56,6 +56,9 @@ namespace trackracer.api.Controllers
             }
             return NotFound(false);
         }
+
+     
+    
         [HttpGet]
         public IActionResult GetUser(string username)
         {
@@ -63,6 +66,7 @@ namespace trackracer.api.Controllers
             return Ok(userModel);
 
         }
-       
+
+        
     }
 }

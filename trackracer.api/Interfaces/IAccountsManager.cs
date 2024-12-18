@@ -1,4 +1,5 @@
-﻿using MyModel.Accounts.Registrationclass;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyModel.Accounts.Registrationclass;
 
 namespace trackracer.Interfaces
 {
@@ -11,6 +12,8 @@ namespace trackracer.Interfaces
         public bool UpdateUser(RegistrationModel registrationModel);
         public bool ChangePassword(Guid UserID, string currentpassword, string newpassword);
         public List<RegistrationModel> GetAllStudentsData();
+        
+        
     }
-    
+
 }
