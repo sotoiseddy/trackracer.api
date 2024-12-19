@@ -66,7 +66,13 @@ namespace trackracer.api.Controllers
             return Ok(userModel);
 
         }
+        [HttpGet]
+        public IActionResult GetAllStudents()
+        {
+            List<RegistrationModel> userModel = _userAcc.GetAllStudents();
+            return Ok(userModel);
 
-        
+        }
+
     }
 }
