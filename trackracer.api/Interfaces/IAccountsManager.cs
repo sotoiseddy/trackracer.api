@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyModel.Accounts.Registrationclass;
+using trackracer.Models.Accounts;
 
 namespace trackracer.Interfaces
 {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
-using MyModel.Accounts.Registrationclass;
 using trackracer.DBContext;
 using trackracer.Interfaces;
 using System.Security.Cryptography;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using trackracer.Models.Accounts;
 
 namespace trackracer.Services
 {

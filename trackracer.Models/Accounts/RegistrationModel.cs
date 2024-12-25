@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyModel.Accounts.Registrationclass
+namespace trackracer.Models.Accounts
 {
     public class RegistrationModel
     {

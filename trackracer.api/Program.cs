@@ -19,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DatabaseContext>
     (options =>
-    options.UseSqlite("Data Source=C:\\Users\\douig\\Downloads\\Test\\TrackerDB"));
+    options.UseSqlite("Data Source=C:\\Users\\lomn_\\Downloads\\TrackerDB\\MyTrackerDB.db"));
 // Add services to the container.
 builder.Services.AddCors(options =>
 {

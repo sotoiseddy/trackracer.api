@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyModel.Accounts.Registrationclass;
 using System;
+using trackracer.Models.Accounts;
 
 
 
@@ -17,9 +17,9 @@ namespace trackracer.DBContext
         }
 
         public virtual DbSet<RegistrationModel> RegistrationModelTB { get; set; }
-     
+        public virtual DbSet<TrackingRequestStatusModel> TrackingRequestStatusTB { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
             modelBuilder.Entity<RegistrationModel>(rm =>
@@ -31,8 +31,17 @@ namespace trackracer.DBContext
                 rm.Property(e => e.Password).HasColumnName("Password").IsRequired(); // Maps to Pawwsord column
                 rm.Property(e => e.Type).HasColumnName("Type").IsRequired(); // Maps to Type column
             });
+            modelBuilder.Entity<TrackingRequestStatusModel>(trs =>
+            {
+                trs.ToTable("TrackingRequestStatus"); // Maps to TrackingRequestStatus table
+                trs.HasKey(e => e.ID); // Sets ID as primary key
+                trs.Property(e => e.ID).HasColumnName("ID").IsRequired(); // Maps to ID column
+                trs.Property(e => e.SenderID).HasColumnName("SenderID").IsRequired(); // Maps to SenderID column
+                trs.Property(e => e.ReceiverID).HasColumnName("ReceiverID").IsRequired(); // Maps to ReceiverID column
+                trs.Property(e => e.Status).HasColumnName("Status").HasMaxLength(50).IsRequired(); // Maps to Status column with max length 50
+            });
 
-     
+
 
 
         }
