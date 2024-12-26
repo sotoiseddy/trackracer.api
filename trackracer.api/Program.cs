@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using trackracer.Services;
 using trackracer.DBContext;
 using trackracer.Interfaces;
+using trackracer.api.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +31,7 @@ builder.Services.AddCors(options =>
 });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IAccountsManager, AccountManager>();
-
+builder.Services.AddScoped<ITrackingRequestStatusManager, TrackingRequestStatusManager>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

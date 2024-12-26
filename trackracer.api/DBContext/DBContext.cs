@@ -33,7 +33,7 @@ namespace trackracer.DBContext
             });
             modelBuilder.Entity<TrackingRequestStatusModel>(trs =>
             {
-                trs.ToTable("TrackingRequestStatus"); // Maps to TrackingRequestStatus table
+                trs.ToTable("TrackingRequestStatusTB"); // Maps to TrackingRequestStatus table
                 trs.HasKey(e => e.ID); // Sets ID as primary key
                 trs.Property(e => e.ID).HasColumnName("ID").IsRequired(); // Maps to ID column
                 trs.Property(e => e.SenderID).HasColumnName("SenderID").IsRequired(); // Maps to SenderID column

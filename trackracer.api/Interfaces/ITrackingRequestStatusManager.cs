@@ -2,7 +2,7 @@
 
 namespace trackracer.api.Interfaces
 {
-    public interface ITrackingRequestStatus
+    public interface ITrackingRequestStatusManager
     {
       
         public bool SaveRequest(TrackingRequestStatusModel request);
