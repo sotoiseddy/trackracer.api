@@ -50,11 +50,9 @@ namespace trackracer.api.Controllers
         public IActionResult GetTrackingRequestByReceiverID(Guid receiverId)
         {
             var request = _trackingManager.GetTrackingRequestByReceiverID(receiverId);
-            if (request != null)
-            {
-                return Ok(request);
-            }
-            return NotFound(null);
+
+            return Ok(request);
+
         }
 
 

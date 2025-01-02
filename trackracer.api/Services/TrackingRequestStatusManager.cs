@@ -61,14 +61,20 @@ namespace trackracer.Services
         // Get a tracking request by ReceiverID
         public TrackingRequestStatusModel GetTrackingRequestByReceiverID(Guid receiverId)
         {
+            TrackingRequestStatusModel result = new TrackingRequestStatusModel();
             try
             {
-                return _db.TrackingRequestStatusTB.FirstOrDefault(tr => tr.ReceiverID == receiverId);
+                result =  _db.TrackingRequestStatusTB.FirstOrDefault(tr => tr.ReceiverID == receiverId);
+
+                if(result == null)
+                  return new TrackingRequestStatusModel(); 
             }
             catch (Exception)
             {
-                return null;
+                return result;
             }
+
+            return result;
         }
     }
 }
