@@ -12,5 +12,7 @@ namespace trackracer.Models.Accounts
         public Guid? SenderID { get; set; }
         public Guid? ReceiverID { get; set; }
         public string Status { get; set; }
+        public string SenderName { get; set; } = "";
+        public string ReceiverName { get; set; } = "";
     }
 }

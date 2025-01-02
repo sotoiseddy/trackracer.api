@@ -39,6 +39,8 @@ namespace trackracer.DBContext
                 trs.Property(e => e.SenderID).HasColumnName("SenderID").IsRequired(); // Maps to SenderID column
                 trs.Property(e => e.ReceiverID).HasColumnName("ReceiverID").IsRequired(); // Maps to ReceiverID column
                 trs.Property(e => e.Status).HasColumnName("Status").HasMaxLength(50).IsRequired(); // Maps to Status column with max length 50
+                trs.Property(e => e.ReceiverName).HasColumnName("ReceiverName").IsRequired();
+                trs.Property(e => e.SenderName).HasColumnName("SenderName").IsRequired();
             });
 
 
