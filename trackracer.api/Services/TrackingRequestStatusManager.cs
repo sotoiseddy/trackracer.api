@@ -22,8 +22,17 @@ namespace trackracer.Services
         {
             try
             {
-                _db.TrackingRequestStatusTB.Add(request);
-                _db.SaveChanges();
+                var info = _db.TrackingRequestStatusTB.FirstOrDefault(tr => tr.ID == request.ID);
+                if (info != null)
+                {
+                    info.Status = request.Status;
+                    _db.SaveChanges();
+                }
+                else
+                {
+                    _db.TrackingRequestStatusTB.Add(request);
+                    _db.SaveChanges();
+                }
                 return true;
             }
             catch (Exception)
@@ -59,9 +68,9 @@ namespace trackracer.Services
         }
 
         // Get a tracking request by ReceiverID
-        public List <TrackingRequestStatusModel> GetTrackingRequestByReceiverID(Guid receiverId)
+        public List<TrackingRequestStatusModel> GetTrackingRequestByReceiverID(Guid receiverId)
         {
-           
+
             try
             {
                 return _db.TrackingRequestStatusTB.Where(tr => tr.ReceiverID == receiverId).ToList();
@@ -71,7 +80,7 @@ namespace trackracer.Services
                 return new List<TrackingRequestStatusModel>();
             }
 
-            
+
         }
     }
 }
