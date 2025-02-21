@@ -17,36 +17,78 @@ namespace trackracer.Services
         {
             _db = db;
         }
-        //Signup method
+
+        //public bool RegistrationMethod(RegistrationModel registrationModel)
+        //{
+        //    try
+        //    {
+        //        //1 for student, 2 for teacher,3 for admin
+        //        registrationModel.Type =1;
+        //        var isEmailExsit = _db.RegistrationModelTB.Where(x => x.UserName.ToLower() == registrationModel.UserName.ToLower()).ToList();
+        //        if (isEmailExsit.Count() > 0)
+        //        {
+        //            return false;
+        //        };
+        //        // Compute the hash of the password with the hardcoded salt
+        //        string passwordHash = ComputeHash(registrationModel.Password, Salt);
+
+        //        // Update the UserModel properties with hashed password and salt
+        //        registrationModel.Password = passwordHash;
+
+        //        // Add the user to the database and save changes
+        //        _db.RegistrationModelTB.Add(registrationModel);
+        //        _db.SaveChanges();
+        //        return true;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
+        //Login method
         public bool RegistrationMethod(RegistrationModel registrationModel)
         {
             try
             {
-                //1 for student, 2 for teacher,3 for admin
-                registrationModel.Type =1;
-                var isEmailExsit = _db.RegistrationModelTB.Where(x => x.UserName.ToLower() == registrationModel.UserName.ToLower()).ToList();
-                if (isEmailExsit.Count() > 0)
+                // Validate input (no empty username or password)
+                if (string.IsNullOrWhiteSpace(registrationModel.UserName) ||
+                    string.IsNullOrWhiteSpace(registrationModel.Password))
                 {
-                    return false;
-                };
-                // Compute the hash of the password with the hardcoded salt
-                string passwordHash = ComputeHash(registrationModel.Password, Salt);
+                    return false; // Invalid input
+                }
 
-                // Update the UserModel properties with hashed password and salt
-                registrationModel.Password = passwordHash;
+                // Check if username already exists
+                bool isUsernameExists = _db.RegistrationModelTB
+                    .Any(x => x.UserName.ToLower() == registrationModel.UserName.ToLower());
 
-                // Add the user to the database and save changes
+                if (isUsernameExists)
+                {
+                    return false; // Username is already taken
+                }
+
+                // Validate user Type (1 = Student, 2 = Teacher, 3 = Admin)
+                if (registrationModel.Type < 1 || registrationModel.Type > 7)
+                {
+                    return false; // Invalid Type
+                }
+
+                // Hash the password
+                registrationModel.Password = ComputeHash(registrationModel.Password, Salt);
+
+                // Save to database
                 _db.RegistrationModelTB.Add(registrationModel);
                 _db.SaveChanges();
-                return true;
 
+                return true;
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Error in RegistrationMethod: {ex.Message}"); // Log the error
                 return false;
             }
         }
-        //Login method
+
         public bool Login(string username, string password)
         {
             try
@@ -128,7 +170,7 @@ namespace trackracer.Services
             try
             {
                 // Retrieve all users where Type == 1 (students)
-                var students = _db.RegistrationModelTB.Where(x => x.Type == 1).ToList();
+                var students = _db.RegistrationModelTB.Where(x => x.Type != 1).ToList();
                 return students;
             }
             catch (Exception ex)
@@ -184,7 +226,7 @@ namespace trackracer.Services
             {
                 // Retrieve the service provider profile based on the userId
                 var serviceProviderProfiles = _db.RegistrationModelTB
-                    .Where(sp => sp.Type == 1)
+                    .Where(sp => sp.Type != 1)
                     .ToList();
 
 

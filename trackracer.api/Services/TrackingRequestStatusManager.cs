@@ -26,6 +26,7 @@ namespace trackracer.Services
                 if (info != null)
                 {
                     info.Status = request.Status;
+                    info.Text = request.Text; // Update the new text field
                     _db.SaveChanges();
                 }
                 else
@@ -68,19 +69,21 @@ namespace trackracer.Services
         }
 
         // Get a tracking request by ReceiverID
-        public List<TrackingRequestStatusModel> GetTrackingRequestByReceiverID(Guid receiverId)
-        {
+        //public List<TrackingRequestStatusModel> GetTrackingRequestByReceiverID(Guid receiverId)
+        //{
 
-            try
-            {
-                return _db.TrackingRequestStatusTB.Where(tr => tr.ReceiverID == receiverId).ToList();
-            }
-            catch (Exception)
-            {
-                return new List<TrackingRequestStatusModel>();
-            }
+        //    try
+        //    {
+        //        return _db.TrackingRequestStatusTB.Where(tr => tr.ReceiverID == receiverId).ToList();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new List<TrackingRequestStatusModel>();
+        //    }
 
 
-        }
+        //}
+
+       
     }
 }

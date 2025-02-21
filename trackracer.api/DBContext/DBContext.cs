@@ -37,10 +37,14 @@ namespace trackracer.DBContext
                 trs.HasKey(e => e.ID); // Sets ID as primary key
                 trs.Property(e => e.ID).HasColumnName("ID").IsRequired(); // Maps to ID column
                 trs.Property(e => e.SenderID).HasColumnName("SenderID").IsRequired(); // Maps to SenderID column
-                trs.Property(e => e.ReceiverID).HasColumnName("ReceiverID").IsRequired(); // Maps to ReceiverID column
+                //trs.Property(e => e.ReceiverID).HasColumnName("ReceiverID").IsRequired(); // Maps to ReceiverID column
                 trs.Property(e => e.Status).HasColumnName("Status").HasMaxLength(50).IsRequired(); // Maps to Status column with max length 50
-                trs.Property(e => e.ReceiverName).HasColumnName("ReceiverName").IsRequired();
+               // trs.Property(e => e.ReceiverName).HasColumnName("ReceiverName").IsRequired();
                 trs.Property(e => e.SenderName).HasColumnName("SenderName").IsRequired();
+                trs.Property(e => e.Text).HasColumnName("Text").HasMaxLength(500);
+                trs.Property(e => e.RequestType).HasColumnName("RequestType").IsRequired();
+                trs.Property(e => e.Location).HasColumnName("Location").HasMaxLength(500);
+                trs.Property(e => e.Pay).HasColumnName("Pay").IsRequired();
             });
 
 

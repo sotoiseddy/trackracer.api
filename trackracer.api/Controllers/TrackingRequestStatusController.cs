@@ -46,16 +46,16 @@ namespace trackracer.api.Controllers
             return NotFound(null);
         }
 
-        [HttpGet]
-        public IActionResult GetTrackingRequestByReceiverID(Guid receiverId)
-        {
-            var request = _trackingManager.GetTrackingRequestByReceiverID(receiverId);
+        //[HttpGet]
+        //public IActionResult GetTrackingRequestByReceiverID(Guid receiverId)
+        //{
+        //    var request = _trackingManager.GetTrackingRequestByReceiverID(receiverId);
 
-            return Ok(request);
+        //    return Ok(request);
 
-        }
+        //}
 
-
+       
 
     }
 }

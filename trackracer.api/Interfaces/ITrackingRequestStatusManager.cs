@@ -8,8 +8,8 @@ namespace trackracer.api.Interfaces
         public bool SaveRequest(TrackingRequestStatusModel request);
         public List<TrackingRequestStatusModel> GetAllRequestStatuses();
         public TrackingRequestStatusModel GetRequestStatusBySenderID(Guid SenderID);
-        public List<TrackingRequestStatusModel> GetTrackingRequestByReceiverID(Guid ReceiverID);
-       
+        //public List<TrackingRequestStatusModel> GetTrackingRequestByReceiverID(Guid ReceiverID);
+      
 
     }
 }
