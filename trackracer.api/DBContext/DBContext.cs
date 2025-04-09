@@ -18,6 +18,7 @@ namespace trackracer.DBContext
 
         public virtual DbSet<RegistrationModel> RegistrationModelTB { get; set; }
         public virtual DbSet<TrackingRequestStatusModel> TrackingRequestStatusTB { get; set; }
+        public virtual DbSet<ChatModel> ChatTB { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,7 +47,19 @@ namespace trackracer.DBContext
                 trs.Property(e => e.Location).HasColumnName("Location").HasMaxLength(500);
                 trs.Property(e => e.Pay).HasColumnName("Pay").IsRequired();
             });
+            modelBuilder.Entity<ChatModel>(trs =>
+            {
+                trs.ToTable("ChatTB"); // Maps to TrackingRequestStatus table
+                trs.HasKey(e => e.Id); // Sets ID as primary key
+                trs.Property(e => e.Id).HasColumnName("Id").IsRequired(); // Maps to ID column
+                trs.Property(e => e.SenderId).HasColumnName("SenderId").IsRequired(); // Maps to SenderID column
+                trs.Property(e => e.ReceiverId).HasColumnName("ReceiverId").IsRequired(); // Maps to SenderID column
+                trs.Property(e => e.ChatMessage).HasColumnName("ChatMessage").IsRequired(); // Maps to SenderID column
+                trs.Property(e => e.ChatId).HasColumnName("ChatId").IsRequired(); // Maps to SenderID column
+                trs.Property(e => e.SenderName).HasColumnName("SenderName").IsRequired();
+                trs.Property(e => e.ReceiverName).HasColumnName("ReceiverName").IsRequired();
 
+            });
 
 
 
