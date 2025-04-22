@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using trackracer.api.Interfaces;
 using trackracer.Models.Accounts;
+using Microsoft.AspNetCore.SignalR;
+using trackracer.RacerPages; // Make sure this namespace matches where ChatSignalHub is
+
 namespace trackracer.api.Controllers
 {
     [ApiController]
@@ -9,16 +12,22 @@ namespace trackracer.api.Controllers
     public class ChatController : ControllerBase
     {
         private readonly IChatManager _chatService;
+        private readonly IHubContext<ChatSignalHub> _chatHub;
 
-        public ChatController(IChatManager chatService)
+        public ChatController(IChatManager chatService, IHubContext<ChatSignalHub> chatHub)
         {
             _chatService = chatService;
+            _chatHub = chatHub;
         }
 
         [HttpPost("send")]
         public async Task<IActionResult> SendMessage([FromBody] ChatModel message)
         {
             var result = await _chatService.SendMessageAsync(message);
+
+            // Send message via SignalR to all connected clients
+            await _chatHub.Clients.All.SendAsync("ReceiveMessage", message.SenderName, message.ReceiverName, message.ChatMessage);
+
             return Ok(result);
         }
 
@@ -29,5 +38,4 @@ namespace trackracer.api.Controllers
             return Ok(messages);
         }
     }
-
 }
