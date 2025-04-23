@@ -226,9 +226,9 @@ namespace trackracer.Services
             {
                 // Retrieve the service provider profile based on the userId
                 var serviceProviderProfiles = _db.RegistrationModelTB
-                    .Where(sp => sp.Type != 1)
-                    .ToList();
 
+                    .ToList();
+                
 
                 return serviceProviderProfiles;
             }
